@@ -1,88 +1,16 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Обратная связь</title>
-</head>
-<body>
-  <form id="https://formspree.io/f/xvgwbwea" class="contact-form">
-    <label>Имя:</label>
-    <input type="text" name="name" required placeholder="Ваше имя">
-
-    <label>Телефон:</label>
-    <input type="tel" name="phone" required placeholder="+972...">
-
-    <label>Сообщение:</label>
-    <textarea name="message" required placeholder="Ваше обращение"></textarea>
-
-    <button type="submit">Отправить</button>
-    <div id="result"></div>
-  </form>
-
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f5f5f5;
-      padding: 30px;
-    }
-    .contact-form {
-      max-width: 400px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    input, textarea, button {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-    }
-    button {
-      background: #333;
-      color: white;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    button:hover {
-      background: #555;
-    }
-    #result {
-      margin-top: 10px;
-      font-weight: bold;
-      min-height: 20px;
-    }
-  </style>
-
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const resultDiv = document.getElementById('result');
-      resultDiv.textContent = 'Отправка...';
-
-      const formData = new FormData(form);
-
-      try {
-        const response = await fetch('sendmail.php', {
-          method: 'POST',
-          body: formData
-        });
-
-        const text = await response.text();
-        resultDiv.textContent = text;
-        if (text.includes('Спасибо')) {
-          form.reset();
-        }
-      } catch (err) {
-        resultDiv.textContent = 'Ошибка при отправке. Попробуйте позже.';
-      }
-    });
-  </script>
-</body>
-</html>
-
+<!-- modify this form HTML and place wherever you want your form -->
+<form
+  action="https://formspree.io/f/xvgwbwea"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
